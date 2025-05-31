@@ -108,7 +108,7 @@ class Home extends StatelessWidget {
           size: 700,
           color: Colors.greenAccent,
         ),*/
-        //child: Image.network('https://www.gettyimages.com/photos/bangladesh-flag'),
+        //child: Image.netw ork('https://www.gettyimages.com/photos/bangladesh-flag'),
         /*      child: Image.asset('assets/images/bd_flug.jpg',
           width: 400,
           height: 100,
