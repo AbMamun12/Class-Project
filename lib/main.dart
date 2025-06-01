@@ -1,4 +1,4 @@
-// class 8.2 List view, Grid view, Size box, Container,Divider
+// class 8.2 List view, Grid view, Size box, ListTile,Divider
 import 'package:flutter/material.dart';
 
 void main() {
@@ -206,7 +206,14 @@ class _HomeState extends State<Home> {
 
            title:    Text(FriendList[index]),
             subtitle: Text('School Friend'),
-            trailing: Icon((Icons.add)),
+            //   trailing: Icon((Icons.add)),
+            trailing: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(Icons.do_not_disturb_on_total_silence, color: Colors.green, size: 10,),
+                Text('Active')
+              ],
+            ),
             leading: Text((index+1).toString()),
             onTap: (){
              print('$index item is tapped');
