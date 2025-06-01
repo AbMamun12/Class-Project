@@ -192,10 +192,43 @@ class _HomeState extends State<Home> {
             height: 20,
             color: Colors.red,
             thickness: 2,
+            endIndent: 15,
+            indent: 4,
           );
           return Text('This is $index separator');
       },
       ), */
+      body: ListView.separated(
+        itemCount: FriendList.length,
+        itemBuilder: (contex, index){
+          return ListTile(
+            tileColor: Colors.grey,
+
+           title:    Text(FriendList[index]),
+            subtitle: Text('School Friend'),
+            trailing: Icon((Icons.add)),
+            leading: Text((index+1).toString()),
+            onTap: (){
+             print('$index item is tapped');
+            },
+            titleTextStyle:  TextStyle(
+              fontSize: 40,
+              color: Colors.red,
+            ),
+
+          );
+        },
+        separatorBuilder: (context, index){
+          return Divider(
+            height: 20,
+            color: Colors.red,
+            thickness: 2,
+            endIndent: 15,
+            indent: 4,
+          );
+          return Text('This is $index separator');
+        },
+      ),
 
     );
   }
