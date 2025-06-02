@@ -161,22 +161,6 @@ class _HomeState extends State<Home> {
           return Text(FriendList[index]);
         },
       ), */
-    /*  body: GridView.builder(
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 3,
-            crossAxisSpacing: 8,
-            mainAxisSpacing: 4,
-            childAspectRatio: 1),
-        itemCount: FriendList.length,
-        itemBuilder: (context, index) {
-          return Column(
-            children: [
-              Text(index.toString()),
-              Text(FriendList[index]),
-            ],
-          );
-        },
-      ), */
 
    /*   body: ListView.separated(
         itemCount: FriendList.length,
