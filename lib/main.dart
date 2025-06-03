@@ -183,6 +183,8 @@ class _HomeState extends State<Home> {
       },
       ), */
       body: ListView.separated(
+
+
         itemCount: FriendList.length,
         itemBuilder: (contex, index){
           return ListTile(
