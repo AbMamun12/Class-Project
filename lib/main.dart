@@ -1,5 +1,7 @@
 // class 8.3 padding, margin, elevation button, dialog box, bottom sheet dialog,container
 import 'package:class_project/Home.dart';
+import 'package:class_project/profile_page.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -11,7 +13,7 @@ class IntroApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    /* return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Home(),
       title: 'IntroApp',
@@ -102,7 +104,16 @@ class IntroApp extends StatelessWidget {
         ),
       ),
       themeMode: ThemeMode.light,
+    ); */
+
+    return CupertinoApp(
+      debugShowCheckedModeBanner: false,
+      home: ProfilePage(),
+      title: 'Intro App',
+
     );
+
+
   }
 }
 
