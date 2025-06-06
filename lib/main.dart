@@ -56,6 +56,7 @@ class _HomeScreenState extends State<HomeScreen> {
               if (counter <=0){
                 counter =0;
               }
+
               setState(() {});
             },
             child:const Icon(Icons.remove),
