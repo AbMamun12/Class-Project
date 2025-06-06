@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:device_preview/device_preview.dart';
-void main(){
-  runApp(DevicePreview(
-    enabled: true,
-    builder: (context) => MyApp(), // Wrap your app
-  ),);
+
+void main() {
+  runApp(
+    DevicePreview(
+      enabled: true,
+      builder: (context) => MyApp(), // Wrap your app
+    ),
+  );
 }
+
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
-
 
   @override
   Widget build(BuildContext context) {
@@ -22,99 +25,29 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
 class Home extends StatelessWidget {
   const Home({super.key});
 
   @override
   Widget build(BuildContext context) {
-    MediaQueryData mediaQuery = MediaQuery.of(context);
-    print(mediaQuery.size.width);
-    print(mediaQuery.size.height);
-    print(mediaQuery.size.aspectRatio);
-    print(mediaQuery.size.flipped.height);
-    print(mediaQuery.devicePixelRatio);
-
-
-    if(mediaQuery.size.width<640){
-      print('This is a PHONE');
-    }
-    else if (mediaQuery.size.width>640 && mediaQuery.size.width<1008){
-      print('This is a Tablet');
-    } else {
-      print('Laptop/Desktop');
-    }
-
-    return  Scaffold(
+    return Scaffold(
       appBar: AppBar(
         title: Text('Home'),
         backgroundColor: Colors.blue,
-
       ),
-      /* body: OrientationBuilder(
-        builder: (context, Orientation orientation) {
-          print(orientation);
-          /* return Column(
-            children: [
-              Wrap(
-                alignment: WrapAlignment.center,
-                crossAxisAlignment: WrapCrossAlignment.center,
-                spacing: 16,
-                children: [
-                  Text('dddddddddddddddd'),
-                  Text('dddddddddddddddd'),
-                  Text('dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd'),
-                  Text('dddddddddddddddd'),
-                  Text('dddddddddddddddd'),
-
-
-
-
-                ],
-              ),
-              Text(orientation.name),
-            ],
-          );*/
-          if (orientation == Orientation.portrait) {
-            return Column(
-              children: [
-                Wrap(
-                  alignment: WrapAlignment.center,
-                  crossAxisAlignment: WrapCrossAlignment.center,
-                  spacing: 16,
-                  children: [
-                    Text('dddddddddddddddd'),
-                    Text('dddddddddddddddd'),
-                    Text(
-                        'dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd'),
-                    Text('dddddddddddddddd'),
-                    Text('dddddddddddddddd'),
-                  ],
-                ),
-                Text(orientation.name),
-              ],
-            );
-          } else {
-            return Center(
-              child: Text('Too Big Screen'),
-            );
-          }
-        }
-      ),*/
-      body: LayoutBuilder(
-          builder: (context, BoxConstraints constraints){
-            if(constraints.maxWidth<640){
-              return Text('This is a PHONE');
-            }
-            else if (constraints.maxWidth>640 && constraints.maxWidth<1008){
-              return Text('This is a Tablet');
-            } else {
-              return Text('Laptop/Desktop');
-            }
-
-          }
-
-      ),
+      body: Container(
+        height: MediaQuery.of(context).size.width,
+        width: MediaQuery.of(context).size.width,
+        color: Colors.yellow,
+        child: FractionallySizedBox(
+          widthFactor: 0.5,
+            heightFactor: 0.3,
+          child: Container(
+            color: Colors.green,
+          ),
+        ),
+      )
     );
   }
 }
-
