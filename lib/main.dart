@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 void main(){
-  runApp(MyApp());
+  runApp(DevicePreview(
+    enabled: true,
+    builder: (context) => MyApp(), // Wrap your app
+  ),);
 }
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -8,6 +11,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      useInheritedMediaQuery: true,
+      locale: DevicePreview.locale(context),
+      builder: DevicePreview.appBuilder,
+      theme: ThemeData.light(),
+      darkTheme: ThemeData.dark(),
       home: Home(),
     );
   }
@@ -39,7 +47,7 @@ class Home extends StatelessWidget {
         backgroundColor: Colors.blue,
 
       ),
-      body: OrientationBuilder(
+      /* body: OrientationBuilder(
         builder: (context, Orientation orientation) {
           print(orientation);
           /* return Column(
@@ -88,6 +96,20 @@ class Home extends StatelessWidget {
             );
           }
         }
+      ),*/
+      body: LayoutBuilder(
+          builder: (context, BoxConstraints constraints){
+            if(constraints.maxWidth<640){
+              return Text('This is a PHONE');
+            }
+            else if (constraints.maxWidth>640 && constraints.maxWidth<1008){
+              return Text('This is a Tablet');
+            } else {
+              return Text('Laptop/Desktop');
+            }
+
+          }
+
       ),
     );
   }
