@@ -32,6 +32,7 @@ class Home extends StatelessWidget {
     print(mediaQuery.size.flipped.height);
     print(mediaQuery.devicePixelRatio);
 
+
     if(mediaQuery.size.width<640){
       print('This is a PHONE');
     }
