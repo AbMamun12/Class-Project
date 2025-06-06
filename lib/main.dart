@@ -46,9 +46,10 @@ class _HomeScreenState extends State<HomeScreen> {
               counter++;
               setState(() {});
             },
-            child: const Icon(Icons.add),
+
+            child:  Icon(Icons.add),
           ),
-        const  SizedBox(width: 16,),
+          SizedBox(width: 16,),
           FloatingActionButton(
             onPressed: () {
               counter--;
