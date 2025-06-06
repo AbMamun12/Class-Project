@@ -2,52 +2,104 @@ import 'package:flutter/material.dart';
 import 'package:device_preview/device_preview.dart';
 
 void main() {
-  runApp(
-    DevicePreview(
-      enabled: true,
-      builder: (context) => MyApp(), // Wrap your app
-    ),
-  );
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  MyApp({super.key});
+
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      useInheritedMediaQuery: true,
-      locale: DevicePreview.locale(context),
-      builder: DevicePreview.appBuilder,
       theme: ThemeData.light(),
       darkTheme: ThemeData.dark(),
-      home: Home(),
+      home: HomeScreen(),
+      debugShowCheckedModeBanner: false,
     );
   }
 }
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({super.key});
 
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  int counter=0;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Home'),
+      ),
+      body: Center(
+        child: Text('Counter $counter'),
+      ),
+      floatingActionButton: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          FloatingActionButton(
+            onPressed: () {
+              counter++;
+              setState(() {});
+            },
+            child: const Icon(Icons.add),
+          ),
+        const  SizedBox(width: 16,),
+          FloatingActionButton(
+            onPressed: () {
+              counter--;
+              if (counter <=0){
+                counter =0;
+              }
+              setState(() {});
+            },
+            child:const Icon(Icons.remove),
+          ),
+         const SizedBox(width: 16,),
+          FloatingActionButton(
+            onPressed: () {
+              counter = 0;
+              setState(() {});
+            },
+            child: const Text('Reset'),
+          ),
+        ],
+      ),
+    );
+
+  }
+}
+
+
+
+/*
 class Home extends StatelessWidget {
-  const Home({super.key});
+   Home({super.key});
+
+  int counter = 0;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text('Home'),
-        backgroundColor: Colors.blue,
       ),
-      body: Container(
-        height: MediaQuery.of(context).size.width,
-        width: MediaQuery.of(context).size.width,
-        color: Colors.yellow,
-        child: FractionallySizedBox(
-          widthFactor: 0.5,
-            heightFactor: 0.3,
-          child: Container(
-            color: Colors.green,
-          ),
-        ),
-      )
+      body: Center(
+        child: Text('Counter $counter'),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          counter++;
+         // print(counter);
+        },
+        child: Icon(Icons.add),
+      ),
     );
+
   }
 }
+*/
