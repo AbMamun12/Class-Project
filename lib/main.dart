@@ -68,6 +68,7 @@ class _HomeScreenState extends State<HomeScreen> {
               counter = 0;
               setState(() {});
             },
+
             child: const Text('Reset'),
           ),
         ],
