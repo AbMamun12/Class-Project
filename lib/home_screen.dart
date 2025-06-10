@@ -102,6 +102,12 @@ class _HomeScreenState extends State<HomeScreen> {
               onPressed: _onTapAddWaterTrack,
               child: Text('Add'),
             ),
+
+            TextButton(
+              onPressed: _onTapRemoveAllData,
+              child: Text('Reset Data'),
+            ),
+
           ],
         ),
       ],
@@ -115,6 +121,11 @@ class _HomeScreenState extends State<HomeScreen> {
     }
     return counter;
   }
+  void _onTapRemoveAllData() {
+    waterTrackList.clear();
+    setState(() {});
+  }
+
 
   void _onTapAddWaterTrack() {
     if (_glassNoTEController.text.isEmpty) {
@@ -134,5 +145,10 @@ class _HomeScreenState extends State<HomeScreen> {
     waterTrackList.removeAt(index);
     setState(() {});
   }
-}
 
+  @override
+  void dispose() {
+    _glassNoTEController.dispose();
+    super.dispose();
+  }
+}
