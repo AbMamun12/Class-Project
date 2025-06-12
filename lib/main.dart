@@ -45,6 +45,7 @@ class _HomeScreenState extends State<HomeScreen> {
               },
               child: Text('Go to Profile'),
             ),
+            SizedBox(height: 14),
             ElevatedButton(
               onPressed: () {
                 //Navigator -> route to route
@@ -95,7 +96,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
             ElevatedButton(onPressed: (){
               Navigator.pop(context);
 
-            }, child: Text('Back'))
+            }, child: Text('Back')),
+            ElevatedButton(onPressed: (){
+              Navigator.push(context,
+              MaterialPageRoute(builder: (context)=> const NewsFeed(isValidUser: true),
+              ),
+              );
+
+            }, child: Text('Go to News Feed'))
+
 
           ],
         ),
@@ -115,10 +124,18 @@ class _MyHomeState extends State<MyHome> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+
       appBar: AppBar(
-        title: Text('My Home'),
+        title: Text('Home'),
         backgroundColor: Colors.green,
+        leading: IconButton(onPressed: (){
+          Navigator.push(context, MaterialPageRoute(builder: (context) {
+            return HomeScreen();
+          }));
+
+        }, icon: Icon(Icons.home)),
       ),
+
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -163,3 +180,18 @@ class _SettingScreenState extends State<SettingScreen> {
     );
   }
 }
+
+class NewsFeed extends StatelessWidget {
+  const NewsFeed({super.key, required this.isValidUser});
+  final bool isValidUser;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Valid User : $isValidUser'),
+      ),
+    );
+  }
+}
+
