@@ -16,6 +16,7 @@ class ProductListScreen extends StatefulWidget {
 class _ProductListScreenState extends State<ProductListScreen> {
 
   List<Product> productList = [];
+  bool _inProgress= false;
 
   @override
   void initState() {
@@ -28,11 +29,16 @@ class _ProductListScreenState extends State<ProductListScreen> {
     return Scaffold(
       appBar: AppBar(
         actions: [
+          IconButton(onPressed: (){
+            getProductList();
+          }, icon: const Icon(Icons.refresh))
 
         ],
         title: Text('Product List Screen'),
       ),
-      body: Padding(
+      body: _inProgress ? const Center(
+        child: CircularProgressIndicator(),
+      ): Padding(
         padding: const EdgeInsets.symmetric(horizontal: 8.0),
         child: ListView.separated(
           itemCount: productList.length,
@@ -63,6 +69,9 @@ class _ProductListScreenState extends State<ProductListScreen> {
   }
 
   Future<void> getProductList() async {
+    productList.clear();
+    _inProgress = true;
+    setState(() {});
     print('requesting');
     Uri uri = Uri.parse('https://crud.teamrabbil.com/api/v1/ReadProduct');
     Response response = await get(uri);
@@ -70,19 +79,21 @@ class _ProductListScreenState extends State<ProductListScreen> {
     print(response.statusCode);
     print(response.body);
     if (response.statusCode == 200) {
+      productList.clear();
       Map<String, dynamic> jsonResponse = jsonDecode(response.body);
       for (var item in jsonResponse['data']) {
         Product product = Product(id: item['_id'],
-          productName: item['ProductName'],
-          productCode: item['ProductCode'],
-          productImage: item['Img'],
-          unitPrice: item['UnitPrice'],
-          quantity: item['Qty'],
-          totalPrice: item['TotalPrice'],
-          createdAt: item['CreatedDate']);
+          productName: item['ProductName']?? '',
+          productCode: item['ProductCode']?? '',
+          productImage: item['Img']?? '',
+          unitPrice: item['UnitPrice']?? '',
+          quantity: item['Qty']?? '',
+          totalPrice: item['TotalPrice']?? '',
+          createdAt: item['CreatedDate']?? '');
         productList.add(product);
       }
     }
+    _inProgress =false;
     setState(() {});
   }
 
