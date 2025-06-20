@@ -116,25 +116,47 @@ class _TodopageState extends State<Todopage> {
                       0.6, // কিবোর্ড সমস্যা এড়াতে height fix
                   child: ListView.builder(
                     itemCount: ToDOList.length,
-                    itemBuilder: (context, index) {
-                      return Card(
-                        child: Sizebox50(Row(
-                          children: [
-                            Expanded(
-                              flex: 80,
-                              child: Text(ToDOList[index]['item'].toString()),
+                      itemBuilder: (context, index) {
+                        return Card(
+                          child: Sizebox50(
+                            Row(
+                              children: [
+                                // ✅ Circle Avatar
+                                Padding(
+                                  padding: EdgeInsets.symmetric(horizontal: 10),
+                                  child: CircleAvatar(
+                                    radius: 14,
+                                    backgroundColor: Colors.green,
+                                    child: Text(
+                                      '${index + 1}',
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 14,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+
+                                // ✅ মূল টেক্সট
+                                Expanded(
+                                  flex: 80,
+                                  child: Text(ToDOList[index]['item'].toString()),
+                                ),
+
+                                // ✅ ডিলিট বাটন
+                                Expanded(
+                                  flex: 30,
+                                  child: TextButton(
+                                    onPressed: () => RemoveItem(index),
+                                    child: Icon(Icons.delete),
+                                  ),
+                                ),
+                              ],
                             ),
-                            Expanded(
-                              flex: 30,
-                              child: TextButton(
-                                onPressed: () => RemoveItem(index),
-                                child: Icon(Icons.delete),
-                              ),
-                            ),
-                          ],
-                        )),
-                      );
-                    },
+                          ),
+                        );
+                      }
                   ),
                 ),
               ],
